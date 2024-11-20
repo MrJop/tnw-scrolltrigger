@@ -57,6 +57,14 @@
             aspect-ratio: 1;
             background-color: #00ff00;
         }
+
+        .big-text {
+            font-size: 40px;
+            color: white;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
     </style>
 </head>
 <body>
@@ -81,6 +89,7 @@
 
 <section class="section-3">
     <div class="box"></div>
+    <div class="big-text">HI CLASS</div>
     <div class="red-dot"></div>
 </section>
 
@@ -133,7 +142,8 @@
             trigger: ".section-2 .box",
             start: "top 80%",
             end: "top 30%",
-            scrub: 1,
+            scrub: 0.5,
+            //markers:true,
             animation: anim
         });
 
@@ -154,15 +164,16 @@
         });
         tl.add(TweenMax.from(".section-3 .box", {autoAlpha:0, duration:0.2, ease: Power1.easeOut}),0);
         tl.add(TweenMax.to(".section-3 .box", {scale:0.8, duration:1, ease: Power1.easeOut}),0);
-        tl.add(TweenMax.to(".section-3 .box", {rotation:360, duration:2, y:'200%', x:'-90%', ease: Power1.easeOut}));
-        tl.add(TweenMax.to(".section-3 .box", {duration:2, width:'80vw', x:0, y:0, ease: Power1.easeIn}));
+        tl.add(TweenMax.to(".section-3 .big-text", {duration:4, rotation:360, y:'800%', ease: Power1.easeIn}), 1);
+        tl.add(TweenMax.to(".section-3 .box", {rotation:360, duration:2, y:'200%', x:'-90%', ease: Power1.easeOut}),1);
+        tl.add(TweenMax.to(".section-3 .box", {duration:2, width:'80vw', x:0, y:0, ease: Power1.easeIn}),3);
 
 
 
         //same behaviour in multiple places
         var redDots = gsap.utils.toArray('.red-dot');
         redDots.forEach((redDot, i) => {
-            var anim = gsap.fromTo(redDot, {autoAlpha: 0, y: 50}, {duration: 1, autoAlpha: 1, y: 0});
+            var anim = gsap.fromTo(redDot, {autoAlpha: 0, y: 50, scale:0}, {duration: 1, autoAlpha: 1, y: 0, scale:4});
             ScrollTrigger.create({
                 trigger: redDot,
                 start: "top 60%",
@@ -175,12 +186,10 @@
         var tl = gsap.timeline({
             scrollTrigger: {
                 trigger: '.section-4',
-                start: "top 80%",
-                end: "top top",
-                scrub: 1,
+                start: "top 60%"
             }
         });
-        tl.add(TweenMax.from('.section-4 .small-block', {stagger:0.2, autoAlpha:0, yPercent:"+40", duration:1, ease: Power1.easeOut}));
+        tl.add(TweenMax.from('.section-4 .small-block', {stagger:0.06, autoAlpha:0, yPercent:"+40", duration:1, ease: Power1.easeOut}));
     });
 </script>
 </body>
