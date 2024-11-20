@@ -40,6 +40,20 @@
             border-radius: 50%;
             background-color: #f44336;
         }
+
+        .small-blocks-container {
+            position: relative;
+            width: 50%;
+            display: flex;
+            gap: 5px;
+        }
+
+        .small-block {
+            position: relative;
+            width: 50px;
+            aspect-ratio: 1;
+            background-color: #00ff00;
+        }
     </style>
 </head>
 <body>
@@ -71,7 +85,24 @@
     <div class="red-dot"></div>
 </section>
 
-<section>
+<section class="section-4">
+    <div class="small-blocks-container">
+        <div class="small-block"></div>
+        <div class="small-block"></div>
+        <div class="small-block"></div>
+        <div class="small-block"></div>
+        <div class="small-block"></div>
+        <div class="small-block"></div>
+        <div class="small-block"></div>
+        <div class="small-block"></div>
+        <div class="small-block"></div>
+        <div class="small-block"></div>
+        <div class="small-block"></div>
+        <div class="small-block"></div>
+        <div class="small-block"></div>
+        <div class="small-block"></div>
+        <div class="small-block"></div>
+    </div>
     <div class="red-dot"></div>
 </section>
 
@@ -136,6 +167,17 @@
             });
         });
 
+
+        //stagger
+        var tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: '.section-4',
+                start: "top 80%",
+                end: "top top",
+                scrub: 1,
+            }
+        });
+        tl.add(TweenMax.from('.section-4 .small-block', {stagger:0.2, autoAlpha:0, yPercent:"+40", duration:1, ease: Power1.easeOut}));
     });
 </script>
 </body>
